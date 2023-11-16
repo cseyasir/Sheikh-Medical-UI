@@ -1,0 +1,178 @@
+{
+  "shops": [
+    {
+      "id": 1,
+     
+      "items": [
+        {
+         
+          "name": "Cap- Silocap-D",
+          "price":"427",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "Cap Silocap-8",
+          "price":"295.30",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "Cap wind cal",
+          "location": "Ethical"
+        },
+        {
+        
+          "name": "tus writing-D",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "Tus Auxi Soda -DS",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "tas pomladay-L",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "Tas Etorimac-TH",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "Tas Sibelium-10mg",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "Cap oxon-20",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "tus Stugeon plus",
+          "location": "Ethical"
+        },
+        {
+       
+          "name": "Cal Silodosia-8D",
+          "location": "Ethical"
+        },
+        {
+         
+          "name": "Cal Silodosia-8",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "Cal Silodosia-SF",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "Tas RemoCRES",
+          "location": "Ethical"
+        },
+        {
+         
+          "name": "Syp KMB 6",
+          "location": "Ethical"
+        },
+        {
+         
+          "name": "Tas NOTHIP-PGM",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "Tos Nortrip-10",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "tas DVN Forte",
+          "location": "Ethical"
+        },
+        {
+         
+          "name": "tou DVN 80",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "Tus DVN 40",
+          "location": "Ethical"
+        },
+        {
+         
+          "name": "Tus DVN Plus",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "tw Nortrip PG-37.5",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "tas Flavale",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "tus Cal-MDZ",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "Tas Glucomet 850",
+          "location": "Ethical"
+        },
+        {
+         
+          "name": "Tas Lorim-D",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "tas Spas rex",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "tas urimil-sr",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "tas unitin",
+          "location": "Ethical"
+        },
+        {
+          
+          "name": "Tw Ecospin 75",
+          "location": "Ethical"
+        },
+        {
+         
+          "name": "tas Folk-S",
+          "location": "Ethical"
+        },
+        {
+       
+          "name": "tos Verilo",
+          "location": "Ethical"
+        },
+        {
+        
+          "name": "tas GlucoMIET 850 SR",
+          "location": "Ethical"
+        }
+      ]
+    }
+    
+  ]
+}
