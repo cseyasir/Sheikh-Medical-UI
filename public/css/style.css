@@ -274,6 +274,16 @@ a {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  
+}
+/* Media query for screens with a maximum width of 768 pixels */
+@media only screen and (max-width: 768px) {
+  .login-page input {
+    /* Adjust styles for smaller screens here */
+    width: 80%; /* Adjust the width as needed */
+    padding: 8px;
+    border-radius: 2px;
+  }
 }
 
 .login-page button {
@@ -1295,7 +1305,7 @@ label {
 }
 input[type="text"],
 textarea {
-  width: 50%;
+  width: 100%;
   padding: 10px;
   margin-top: 5px;
   margin-bottom: 10px;
@@ -1313,7 +1323,7 @@ label {
 }
 input[type="text"],
 textarea {
-  width: 50%;
+  width: 100%;
   padding: 10px;
   margin-top: 5px;
   margin-bottom: 10px;
@@ -1331,7 +1341,7 @@ textarea {
         }
         input[type="text"],
         textarea {
-            width: 50%;
+            width: 100%;
             padding: 10px;
             margin-top: 5px;
             margin-bottom: 10px;
