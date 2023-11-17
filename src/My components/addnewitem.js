@@ -28,7 +28,7 @@ const Addnewitem = () => {
       // All fields are filled, so you can proceed with the submission
       // Send a POST request to add the new item
 
-      fetch('http://localhost:5000/medicines', {
+      fetch('https://sheikh-medical-store.onrender.com/medicines', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

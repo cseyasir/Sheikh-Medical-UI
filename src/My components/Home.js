@@ -106,7 +106,7 @@ function Home() {
                 <div class="col-sm-6 col-lg-4 text-center item mb-4">
               
 
-                  <a href="shop-single.html"> <img src="images/ompp.jfif" alt="Image" /></a>
+                  <a href="shop-single.html"> <img src="images/Ompp.jfif" alt="Image" /></a>
                   <h3 class="text-success">Omeprazole</h3>
                  
                 </div>
