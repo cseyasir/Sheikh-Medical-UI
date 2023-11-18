@@ -192,7 +192,7 @@ const handleUpdateSubmit = () => {
   <thead>
     <tr>
       <th className='fix pl-5 h3 text-primary' >Name</th>
-      <th className='pl-5 h3 text-primary'>Price</th>
+      {/* <th className='pl-5 h3 text-primary'>Price</th> */}
       <th className='pl-5 h3 text-primary'>Location</th>
       <th className='pl-5 h3 text-primary'>Actions</th>
     </tr>
