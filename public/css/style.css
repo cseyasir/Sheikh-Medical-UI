@@ -1436,3 +1436,50 @@ textarea {
 .about{
   font-family: Georgia, serif;
 }
+.image-slider {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* Adjust the maximum width as needed */
+  margin: 0 auto;
+  overflow: hidden; /* Ensure images are not visible outside the slider */
+  height: 300px; /* Set a fixed height for the slider */
+}
+
+.slider-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: 100%; /* Make sure the slider-wrapper takes up 100% height of the image-slider */
+  align-items: center; /* Center images vertically */
+}
+
+.slide {
+  flex: 0 0 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  display: block; /* Center the image horizontally */
+  margin: 0 auto;
+}
+
+.prev-btn,
+.next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+

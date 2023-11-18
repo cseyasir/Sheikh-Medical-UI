@@ -105,7 +105,7 @@ import React,{ useState,useEffect } from 'react'
             setUploadComplete(true);
             setTimeout(() => {
               setUploadComplete(false);
-            }, 5000);
+            }, 7000);
           } else {
             const newProgress = (bytesUploaded / totalSize) * 100;
             setProgress(newProgress);

@@ -1,6 +1,33 @@
-import React from 'react'
+import React,{ useState, useEffect } from 'react'
+
 
  function About() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const images = [
+    'images/Sheikh.jpg',
+    'images/s1.jfif',
+    'images/s2.jpeg',
+    'images/s3.png',
+    'images/s4.jpg',
+    // Add more image paths as needed
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 2000); // Adjust the interval as needed
+
+    return () => clearInterval(interval);
+  }, [currentSlide]);
+
+  const prevSlide = () => {
+    setCurrentSlide((prevSlide) => (prevSlide - 1 + images.length) % images.length);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+  };
   return (
     <>
     <div className='about'>
@@ -16,11 +43,21 @@ import React from 'react'
 
 <p>As we reflect on our journey since 1972, we take immense pride in being a cornerstone of health and wellness in Janglat Mendi, Anantnag. Our longstanding commitment continues to be a source of pride, and we look forward to many more years of serving and supporting the well-being of our valued customers.</p>
 <p className='text-success h3'>Shop Insight</p>
-<img src="images/Sheikh.jpg" width='40%' height='40%' alt="Image" className='pt-2' /><br/>
+<div className="image-slider">
+      <div className="slider-wrapper" style={{ transform: `translateX(${-currentSlide * 100}%)` }}>
+        {images.map((image, index) => (
+          <div key={index} className="slide">
+            <img src={image} alt={`Slide ${index + 1}`} />
+          </div>
+        ))}
+      </div>
+     
+    </div>
+
 <p>Shop No:4</p>
 <p>Area:Janglet Mandi Anantnag</p>
 <p>Land Mark 1:GMC Anantnag Hospital gate no 1 </p>
-<p>Land Mark 2: Near Hanfia Masjid Janglet Madni </p>
+<p>Land Mark 2: Near Hanfia Masjid Janglat Madni </p>
 
  {/* <div className='container'>
  <div className='row'>

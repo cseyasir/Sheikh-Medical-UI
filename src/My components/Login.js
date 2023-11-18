@@ -34,6 +34,7 @@ function Login() {
   };
 
   return (
+    <div className='bg-dark mt-1'>
     <div className='container'>
       <div className='row'>
       <div className='col-4 '>
@@ -70,7 +71,7 @@ function Login() {
       </div>
 
     </div>
-    
+    </div>
     
   );
 }

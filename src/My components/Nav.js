@@ -36,7 +36,7 @@ function Nav() {
               <div class="logo">
                 <div>
                   <span className='icon-local_pharmacy sms_logo text-light '></span> <span className='text-uppercase font-weight-bold text-light'>Sheikh Medical Store</span>
-                  {/* <img src="images/navlogo.jpg" alt="Image" className=''/> */}
+              
                 </div>
               </div>
               <div class="main-nav d-none d-lg-block">
@@ -48,7 +48,8 @@ function Nav() {
                     <li className='nav_but text-light'><Link to="Search"><span className='text-light'>search</span></Link></li>
                     <li className='nav_but text-light'><Link to="Addingitem"><span className='text-light'>Add new Item</span></Link></li>
                     <li className='nav_but text-light ' onClick={Logout}>LOGOUT</li>
-                    <span className='icon-user text-light '></span>
+                    <span className='icon-user h4 text-primary'>Admin</span>
+                    
                   </ul>
                 </nav>
               </div>
@@ -63,7 +64,7 @@ function Nav() {
                     <li className='nav_but text-light'><Link to="Search"><span className='text-light'>Search</span></Link></li>
                     <li className='nav_but text-light'><Link to="Addingitem"><span className='text-light'>Add new Item</span></Link></li>
                     <li className='nav_but text-light'onClick={Logout}>LogOut</li>
-                    <span className='icon-user '></span>
+                    <span className='icon-user h4'>Admin</span>
                   </div>
                 )}
               </div>
@@ -105,7 +106,7 @@ function Nav() {
                       
                       <li className='nav_but text-light'><Link to="Login"><span className='text-light'>Login</span></Link></li>
                       
-                      <span className='icon-user text-light '></span>
+                
   
   
   
