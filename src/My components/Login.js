@@ -18,7 +18,7 @@ function Login() {
     e.preventDefault();
 
     // Check if both email and password are equal to "admin"
-    if (email === 'admin@sheikh.com' && password === 'admin') {
+    if (email === 'admin@sheikh.com' && password === 'sheikh123@') {
       // Set the role to 1 in local storage
       localStorage.setItem('role', '1');
 

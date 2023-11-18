@@ -116,15 +116,20 @@ const handleUpdateSubmit = () => {
     fetch(`https://sheikh-medical-store.onrender.com/medicines/search?name=${encodeURIComponent(searchTerm)}`)
       .then((response) => {
         if (!response.ok) {
+          if (response.status === 404) {
+            alert("Medicine not found");
+            setSearchResults([]);
+          } 
           throw new Error('Network response was not ok');
         }
+        
         return response.json();
       })
       .then((data) => {
         setSearchResults(data);
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        alert('Error fetching data:', error);
         // Handle the error, e.g., display an error message to the user.
       });
   };
@@ -186,18 +191,18 @@ const handleUpdateSubmit = () => {
       <table >
   <thead>
     <tr>
-      <th className='fix pl-5' >Name</th>
-      <th className='pl-5'>Price</th>
-      <th className='pl-5'>Location</th>
-      <th className='pl-5'>Actions</th>
+      <th className='fix pl-5 h3 text-primary' >Name</th>
+      <th className='pl-5 h3 text-primary'>Price</th>
+      <th className='pl-5 h3 text-primary'>Location</th>
+      <th className='pl-5 h3 text-primary'>Actions</th>
     </tr>
   </thead>
   <tbody>
     {searchResults.map((result, index) => (
       <tr key={index}>
-        <td className='fix pl-5 '>{result.name}</td>
-        <td className='pl-5'>${result.price}</td>
-        <td className='pl-5'>{result.location}</td>
+        <td className='fix pl-5 h4'>{result.name}</td>
+        <td className='pl-5 h4'>${result.price}</td>
+        <td className='pl-5 h4'>{result.location}</td>
         <td className='pl-5'>
           <span className='icon-trash-o delete-icon pl-2 ' onClick={() => handleDelete(result.name)} ></span>
           <span className='icon-edit edit-icon ' onClick={() => handleUpdate(result)}></span>
