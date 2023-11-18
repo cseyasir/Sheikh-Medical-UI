@@ -24,7 +24,9 @@ function Login() {
 
       // Redirect to the home page
       navigate('/Search');
-    } else {
+    } 
+    else {
+      alert("Wrong Login");
       // Handle other authentication logic here if needed
 
       // Reset the form after submission

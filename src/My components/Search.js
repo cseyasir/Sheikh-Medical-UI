@@ -201,7 +201,7 @@ const handleUpdateSubmit = () => {
     {searchResults.map((result, index) => (
       <tr key={index}>
         <td className='fix pl-5 h4'>{result.name}</td>
-        <td className='pl-5 h4'>${result.price}</td>
+        {/* <td className='pl-5 h4'>${result.price}</td> */}
         <td className='pl-5 h4'>{result.location}</td>
         <td className='pl-5'>
           <span className='icon-trash-o delete-icon pl-2 ' onClick={() => handleDelete(result.name)} ></span>
