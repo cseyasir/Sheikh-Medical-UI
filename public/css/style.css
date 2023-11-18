@@ -285,6 +285,25 @@ a {
     border-radius: 2px;
   }
 }
+/* Default styles for all screens */
+.login_icon {
+  width: 360px;
+}
+
+/* Media query for small screens (up to 767px width) */
+@media only screen and (max-width: 767px) {
+  .login_icon {
+    width: 200px; /* Adjust the width for small screens */
+  }
+}
+
+/* Media query for large screens (768px width and above) */
+@media only screen and (min-width: 768px) {
+  .login_icon {
+    width: 360px; /* Keep or adjust the width for large screens */
+  }
+}
+
 
 .login-page button {
   background-color: #007bff;
@@ -1409,4 +1428,7 @@ textarea {
 }
 .fix4{
   padding-left: 100%;
+}
+.about{
+  font-family: Georgia, serif;
 }

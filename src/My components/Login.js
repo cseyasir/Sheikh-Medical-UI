@@ -34,8 +34,14 @@ function Login() {
   };
 
   return (
-    <div className="pt-4">
-        <div className='col-8 login-page icon-user'> 
+    <div className='container'>
+      <div className='row'>
+      <div className='col-4 '>
+      <img src="images/login icon.gif"  className='login_icon'alt="Image"  /><br/>
+      </div>
+      <div className="col-8">
+     
+        <div className='login-page icon-user h4'> 
           <h2>Login</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -60,6 +66,11 @@ function Login() {
           </form>
         </div>
       </div>
+
+      </div>
+
+    </div>
+    
     
   );
 }

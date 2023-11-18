@@ -44,7 +44,7 @@ function Nav() {
                   <ul class="site-menu js-clone-nav d-none d-lg-block">
                     <li class="active icon-home text-light"><Link to="/"><span className='text-light'>Home</span></Link></li>
                     <li className='nav_but text-light'><Link to="About"><span className='text-light'>About</span></Link></li>
-                    <li className='nav_but text-light'><a href="contact.html"><span className='text-light'>Contact</span></a></li>
+
                     <li className='nav_but text-light'><Link to="Search"><span className='text-light'>search</span></Link></li>
                     <li className='nav_but text-light'><Link to="Addingitem"><span className='text-light'>Add new Item</span></Link></li>
                     <li className='nav_but text-light ' onClick={Logout}>LOGOUT</li>
@@ -59,7 +59,7 @@ function Nav() {
                   <div className={`menu ${isMenuOpen ? 'open' : ''}`}>
                     <li className=" icon-home text-light"><Link to="/" className='text-light'>Home</Link></li>
                     <li className='nav_but text-light'><Link to ="About" className='text-light'>About</Link></li>
-                    <li className='nav_but text-light'><a href="contact.html" className='text-light'>Contact</a></li>
+
                     <li className='nav_but text-light'><Link to="Search"><span className='text-light'>Search</span></Link></li>
                     <li className='nav_but text-light'><Link to="Addingitem"><span className='text-light'>Add new Item</span></Link></li>
                     <li className='nav_but text-light'onClick={Logout}>LogOut</li>
@@ -83,14 +83,7 @@ function Nav() {
           
           <div class="site-navbar py-2 bg-secondary">
   
-            {/* <div class="search-wrap">
-        <div class="container">
-          <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
-          <form action="#" method="post">
-            <input type="text" class="form-control" placeholder="Search keyword and hit enter..." />
-          </form>
-        </div>
-      </div> */}
+         
   
             <div class="container  ">
   
@@ -100,7 +93,7 @@ function Nav() {
                   <div>
   
                     <span className='icon-local_pharmacy sms_logo text-light '></span> <span className='text-uppercase font-weight-bold text-light'>Sheikh Medical Store</span>
-                    {/* <img src="images/navlogo.jpg" alt="Image" className=''/> */}
+                   
                   </div>
                 </div>
                 <div class="main-nav d-none d-lg-block">
@@ -109,31 +102,12 @@ function Nav() {
   
                       <li class="active icon-home text-light"><Link to="/"><span className='text-light'>Home</span></Link></li>
                       <li className='nav_but text-light'><Link to="About"><span className='text-light'>About</span></Link></li>
-                      <li className='nav_but text-light'><a href="contact.html"><span className='text-light'>Contact</span></a></li>
+                      
                       <li className='nav_but text-light'><Link to="Login"><span className='text-light'>Login</span></Link></li>
                       
                       <span className='icon-user text-light '></span>
   
   
-                      {/* <li><a href="shop.html">Store</a></li> */}
-                      {/* <li class="has-children">
-                  <a href="#">Type of medicines</a>
-                  <ul class="dropdown">
-                    <li><a href="#">General Medicine</a></li>
-                   <li><a href="#">Ayurvedic Medicine</a></li> 
-                    <li class="has-children">
-                       <a href="#">Ayurvedic Medicine</a> 
-                      <ul class="dropdown">
-                        <li><a href="#">Adults</a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#">Diet &amp; Nutrition</a></li>
-                        <li><a href="#">Tea &amp; Coffee</a></li>
-                      </ul> 
-                    </li>
-                    <li><a href="#">Child care  </a></li>
-                    <li><a href="#">Tea &amp; Coffee</a></li>
-  
-                  </ul> */}
   
   
   
@@ -148,8 +122,8 @@ function Nav() {
                   {isMenuOpen && (
                     <div className={`menu ${isMenuOpen ? 'open' : ''}`}>
                       <li class=" icon-home"><Link to="/">Home</Link></li>
-                      <li className='nav_but'><a href="about.html">About</a></li>
-                      <li className='nav_but'><a href="contact.html">Contact</a></li>
+                      <li className='nav_but'><Link to="About">About</Link></li>
+                     
                       
                       <li className='nav_but'><Link to="Login"><span className='text-light'>Login</span></Link></li>
                       <span className='icon-user '></span>
