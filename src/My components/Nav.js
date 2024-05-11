@@ -103,7 +103,7 @@ function Nav() {
   
                       <li class="active icon-home text-light"><Link to="/"><span className='text-light'>Home</span></Link></li>
                       <li className='nav_but text-light'><Link to="About"><span className='text-light'>About</span></Link></li>
-                      
+                    
                       <li className='nav_but text-light'><Link to="Login"><span className='text-light'>Login</span></Link></li>
                       
                 

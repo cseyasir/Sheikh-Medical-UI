@@ -10,6 +10,7 @@ import Find from "./My components/Find"
 import Search from './My components/Search';
 import About from './My components/About'
 import Add from './My components/addnewitem'
+import Bill from './My components/Bill';
 
 import { BrowserRouter , Routes, Route, Link } from "react-router-dom";
 
@@ -29,6 +30,7 @@ function App() {
         <Route exact path="Find" element={<Find/>} />
         <Route exact path="About" element={<About/>} />
         <Route exact path="Search" element={<Search/>} />
+        <Route exact path="Bill" element={<Bill/>} />
         <Route exact path="Addingitem" element={<Add/>} />
        
       
