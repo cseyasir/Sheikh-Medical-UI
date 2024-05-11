@@ -71,15 +71,15 @@ function Bill() {
   };
 
   const generateBill = () => {
-    let bill = `**Pharmacy Billing System**\n\n`;
-    bill += `**Patient Details**\n`;
+    let bill = `*Sheikh Medical Store*\n\n`;
+    bill += `*Patient Details*\n`;
     bill += `Name: ${patientDetails.name}\n`;
     bill += `Age: ${patientDetails.age}\n`;
     bill += `Phone Number: ${patientDetails.phone}\n`;
     bill += `Address: ${patientDetails.address}\n\n`;
-    bill += `**Medicines**\n`;
-    bill += `Medicine       | Quantity | Price\n`;
-    bill += `---------------|----------|------\n`;
+    bill += `*Medicines*\n`;
+    bill += `Medicine      | Quantity| Price\n`;
+    bill += `---------------|----------|-----\n`;
     cart.forEach(item => {
       const price = MEDICINES[item.medicine];
       bill += `${item.medicine.padEnd(14)}|${String(item.quantity).padStart(10)}| Rs. ${price}\n`;
