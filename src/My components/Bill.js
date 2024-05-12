@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './bill.css'
+import './bill.css';
+
 const MEDICINES = {
   'Paracetamol': 10,
   'Ibuprofen': 15,
@@ -7,51 +8,67 @@ const MEDICINES = {
 };
 
 function Bill() {
+  const initialState = {
+    name: '',
+    age: 0,
+    phone: '',
+    address: '',
+    selectedMedicine: '',
+    searchTerm: '',
+    paymentMethod: 'Cash',
+    cashGiven: 0,
+    expiryDate:'',
+    batchNumber:'',
+    MedicineName:''
+  };
+
+  const [medicineDetails, setMedicineDetails] = useState({
+    name: '',
+    price: 0,
+    expiryDate: '',
+    batchNumber: '',
+    quantity:1
+  });
+  
   const [patientDetails, setPatientDetails] = useState({
     name: '',
     age: 0,
     phone: '',
     address: ''
   });
+  
   const [cart, setCart] = useState([]);
-  const [selectedMedicine, setSelectedMedicine] = useState('');
-  const [selectedExpiry, setSelectedExpiry] = useState('');
-  const [batchNumber, setBatchNumber] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('Cash');
   const [cashGiven, setCashGiven] = useState(0);
 
-  const calculateTotal = () => {
-    let total = 0;
-    cart.forEach(item => {
-      total += MEDICINES[item.medicine] * item.quantity;
-    });
-    return total;
-  };
-
   const handleAddToCart = () => {
-    if (selectedMedicine && cart.find(item => item.medicine === selectedMedicine)) {
-      const updatedCart = cart.map(item => {
-        if (item.medicine === selectedMedicine) {
-          return { ...item, quantity: item.quantity + 1 };
-        }
-        return item;
-      });
-      setCart(updatedCart);
-    } else {
-      setCart([...cart, { 
-        medicine: selectedMedicine, 
-        quantity: 1, 
-        expiry: selectedExpiry,
-        batchNumber: batchNumber
-      }]);
+    if (!medicineDetails.name.trim() || !medicineDetails.expiryDate.trim() || !medicineDetails.batchNumber.trim() || !medicineDetails.price) {
+      alert('Please enter all medicine details.');
+      return;
     }
+    const newItem = { ...medicineDetails, quantity: parseInt(medicineDetails.quantity) || 1 }; // Ensure a default quantity of 1 if not provided
+    setCart([...cart, { ...medicineDetails }]);
+    // Reset medicine details after adding to cart
+    setMedicineDetails({ name: '', price: 0, expiryDate: '', batchNumber: '',quantity:1 });
   };
 
   const handleRemoveFromCart = (index) => {
     const updatedCart = [...cart];
     updatedCart.splice(index, 1);
     setCart(updatedCart);
+  };
+  const handleIncrementQuantity = (index) => {
+    const updatedCart = [...cart];
+    updatedCart[index].quantity += 1;
+    setCart(updatedCart);
+  };
+
+  const handleDecrementQuantity = (index) => {
+    const updatedCart = [...cart];
+    if (updatedCart[index].quantity > 1) {
+      updatedCart[index].quantity -= 1;
+      setCart(updatedCart);
+    }
   };
 
   const handlePaymentMethodChange = (e) => {
@@ -62,8 +79,13 @@ function Bill() {
     setCashGiven(e.target.value);
   };
 
-  const handleGenerateBill = () => {
-    // Generate and print bill logic
+  const calculateTotal = () => {
+    let total = 0;
+    cart.forEach(item => {
+      const price = MEDICINES[item.name] || item.price; // Check if medicine price exists in predefined list
+      total += price * parseInt(item.quantity);
+    });
+    return total;
   };
 
   const handlePrint = () => {
@@ -75,6 +97,11 @@ function Bill() {
     printWindow.document.write('</body></html>');
     printWindow.document.close();
     printWindow.print();
+    // Reset all fields after printing
+    setPatientDetails(initialState);
+    setCart([]);
+    setPaymentMethod('Cash');
+    setCashGiven(0);
   };
 
   const generateBill = () => {
@@ -84,12 +111,13 @@ function Bill() {
     bill += `Age: ${patientDetails.age}\n`;
     bill += `Phone Number: ${patientDetails.phone}\n`;
     bill += `Address: ${patientDetails.address}\n\n`;
-    // bill += `*Medicines*\n`;
-    bill += `Medicine \nExpire date\nBatch Number | Quantity| Price |\n`;
+    bill += `Medicine\nExpire date\nBatch Number | Quantity| Price |\n`;
     bill += `-------------|---------|-------|\n`;
     cart.forEach(item => {
-      const price = MEDICINES[item.medicine];
-      bill += `${item.medicine.padEnd(14)}\n ${item.expiry}\n${item.batchNumber.padEnd(13)}|${String(item.quantity).padStart(9)}| Rs. ${price}\n`;
+      const price = MEDICINES[item.name] || item.price; // Check if medicine price exists in predefined list
+      const expiryDate = item.expiryDate || '';
+      const batchNumber = item.batchNumber || '';
+      bill += `${item.name.padEnd(14)}\n ${expiryDate}\n${batchNumber.padEnd(13)}|${String(item.quantity).padStart(9)}| Rs. ${price}\n`;
     });
     bill += `\n`;
     bill += `**Total Amount:** Rs. ${calculateTotal()}\n`;
@@ -106,114 +134,148 @@ function Bill() {
   };
 
   return (
-    <div>
-      <h1>Sheikh Billing System</h1>
-      <label>
-        Patient Name:
-        <input
-          type="text"
-          value={patientDetails.name}
-          onChange={e => setPatientDetails(prev => ({ ...prev, name: e.target.value }))}
-        />
-      </label>
-      <br />
-      <label>
-        Patient Age:
-        <input
-          type="number"
-          value={patientDetails.age}
-          onChange={e => setPatientDetails(prev => ({ ...prev, age: e.target.value }))}
-        />
-      </label>
-      <br />
-      <label>
-        Phone Number:
-        <input
-          type="text"
-          value={patientDetails.phone}
-          onChange={e => setPatientDetails(prev => ({ ...prev, phone: e.target.value }))}
-        />
-      </label>
-      <br />
-      <label>
-        Address:
-        <textarea
-          value={patientDetails.address}
-          onChange={e => setPatientDetails(prev => ({ ...prev, address: e.target.value }))}
-        ></textarea>
-      </label>
-      <br />
-      <input
-        type="text"
-        placeholder="Search Medicine"
-        value={searchTerm}
-        onChange={e => setSearchTerm(e.target.value)}
-      />
-      <select onChange={e => setSelectedMedicine(e.target.value)}>
-        <option>Select Medicine</option>
-        {Object.keys(MEDICINES).filter(med => med.toLowerCase().includes(searchTerm.toLowerCase())).map(med => (
-          <option key={med} value={med}>{med} (Price: Rs. {MEDICINES[med]})</option>
-        ))}
-      </select>
-      <label>
-        Expiry Date:
-        <input
-          type="text"
-          value={selectedExpiry}
-          onChange={e => setSelectedExpiry(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Batch Number:
-        <input
-          type="text"
-          value={batchNumber}
-          onChange={e => setBatchNumber(e.target.value)}
-        />
-      </label>
-      <br />
-      <button onClick={handleAddToCart}>+</button>
-      <br />
-      <h2>Cart</h2>
-      <ul>
-        {cart.map((item, index) => (
-          <li key={index}>{item.medicine}: {item.quantity} <button onClick={() => handleRemoveFromCart(index)}>-</button></li>
-        ))}
-      </ul>
-      <h2>Payment Method</h2>
-      <label>
-        Cash
-        <input
-          type="radio"
-          value="Cash"
-          checked={paymentMethod === 'Cash'}
-          onChange={handlePaymentMethodChange}
-        />
-      </label>
-      <label>
-        Online
-        <input
-          type="radio"
-          value="Online"
-          checked={paymentMethod === 'Online'}
-          onChange={handlePaymentMethodChange}
-        />
-      </label>
-      {paymentMethod === 'Cash' && (
-        <div>
-          <label>
-            Cash Given:
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col">
+          <h2>Patient Details</h2>
+          <form>
+            <div className="form-group">
+              <label>Name:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={patientDetails.name}
+                onChange={e => setPatientDetails(prev => ({ ...prev, name: e.target.value }))}
+              />
+            </div>
+            <div className="form-group">
+              <label>Age:</label>
+              <input
+                type="number"
+                className="form-control"
+                value={patientDetails.age}
+                onChange={e => setPatientDetails(prev => ({ ...prev, age: e.target.value }))}
+              />
+            </div>
+            <div className="form-group">
+              <label>Phone Number:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={patientDetails.phone}
+                onChange={e => setPatientDetails(prev => ({ ...prev, phone: e.target.value }))}
+              />
+            </div>
+            <div className="form-group">
+              <label>Address:</label>
+              <textarea
+                className="form-control"
+                value={patientDetails.address}
+                onChange={e => setPatientDetails(prev => ({ ...prev, address: e.target.value }))}
+              ></textarea>
+            </div>
+          </form>
+        </div>
+        <div className="col">
+          <h2>Medicine</h2>
+          <div className="form-group">
+            <label>Medicine Name:</label>
+            <input
+              type="text"
+              className="form-control"
+              value={medicineDetails.name}
+              onChange={e => setMedicineDetails(prev => ({ ...prev, name: e.target.value }))}
+            />
+          </div>
+          <div className="form-group">
+            <label>Price:</label>
             <input
               type="number"
-              value={cashGiven}
-              onChange={handleCashGivenChange}
+              className="form-control"
+              value={medicineDetails.price}
+              onChange={e => setMedicineDetails(prev => ({ ...prev, price: e.target.value }))}
             />
-          </label>
+          </div>
+          <div className="form-group">
+            <label>Expiry Date:</label>
+            <input
+              type="text"
+              className="form-control"
+              value={medicineDetails.expiryDate}
+              onChange={e => setMedicineDetails(prev => ({ ...prev, expiryDate: e.target.value }))}
+            />
+          </div>
+          <div className="form-group">
+            <label>Batch Number:</label>
+            <input
+              type="text"
+              className="form-control"
+              value={medicineDetails.batchNumber}
+              onChange={e => setMedicineDetails(prev => ({ ...prev, batchNumber: e.target.value }))}
+            />
+          </div>
+          <button className="btn btn-primary" onClick={handleAddToCart}>Add to Cart</button>
         </div>
-      )}
-      <br />
-      <button onClick={handlePrint}>Print Bill</button>
+      </div>
+      <div className="row">
+        <div className="col">
+          <h2>Cart</h2>
+          <ul className="list-group">
+            {cart.map((item, index) => (
+              <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                 {item.name} (Price: {MEDICINES[item.name] || item.price}, Quantity:
+                <button onClick={() => handleDecrementQuantity(index)}>-</button>
+                {item.quantity}
+                <button onClick={() => handleIncrementQuantity(index)}>+</button>
+                <button className="btn btn-danger" onClick={() => handleRemoveFromCart(index)}>Remove</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          <h2>Payment Method</h2>
+          <div className="form-check">
+            <input
+              type="radio"
+              className="form-check-input"
+              id="cashRadio"
+              value="Cash"
+              checked={paymentMethod === 'Cash'}
+              onChange={handlePaymentMethodChange}
+            />
+            <label className="form-check-label" htmlFor="cashRadio"><span className='radio'>Cash</span></label>
+          </div>
+          <div className="form-check">
+            <input
+              type="radio"
+              className="form-check-input"
+              id="onlineRadio"
+              value="Online"
+              checked={paymentMethod === 'Online'}
+              onChange={handlePaymentMethodChange}
+            />
+            <label className="form-check-label" htmlFor="onlineRadio"><span className='radio'>Online</span></label>
+          </div>
+          {paymentMethod === 'Cash' && (
+            <div className="form-group">
+              <label>Cash Given:</label>
+              <input
+                type="number"
+                className="form-control"
+                value={cashGiven}
+                onChange={handleCashGivenChange}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          <button className="btn btn-primary" onClick={handlePrint}>Print Bill</button>
+        </div>
+      </div>
     </div>
   );
 }
