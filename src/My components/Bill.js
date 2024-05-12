@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './bill.css'
 const MEDICINES = {
   'Paracetamol': 10,
   'Ibuprofen': 15,
@@ -15,6 +15,8 @@ function Bill() {
   });
   const [cart, setCart] = useState([]);
   const [selectedMedicine, setSelectedMedicine] = useState('');
+  const [selectedExpiry, setSelectedExpiry] = useState('');
+  const [batchNumber, setBatchNumber] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('Cash');
   const [cashGiven, setCashGiven] = useState(0);
@@ -37,7 +39,12 @@ function Bill() {
       });
       setCart(updatedCart);
     } else {
-      setCart([...cart, { medicine: selectedMedicine, quantity: 1 }]);
+      setCart([...cart, { 
+        medicine: selectedMedicine, 
+        quantity: 1, 
+        expiry: selectedExpiry,
+        batchNumber: batchNumber
+      }]);
     }
   };
 
@@ -71,18 +78,18 @@ function Bill() {
   };
 
   const generateBill = () => {
-    let bill = `*Sheikh Medical Store*\n\n`;
+    let bill = `*Sheikh Medical Store*\n   Jangla Mandi\n   Anantnag\n   9541802864\n\n`;
     bill += `*Patient Details*\n`;
     bill += `Name: ${patientDetails.name}\n`;
     bill += `Age: ${patientDetails.age}\n`;
     bill += `Phone Number: ${patientDetails.phone}\n`;
     bill += `Address: ${patientDetails.address}\n\n`;
-    bill += `*Medicines*\n`;
-    bill += `Medicine      | Quantity| Price\n`;
-    bill += `---------------|----------|-----\n`;
+    // bill += `*Medicines*\n`;
+    bill += `Medicine \nExpire date\nBatch Number | Quantity| Price |\n`;
+    bill += `-------------|---------|-------|\n`;
     cart.forEach(item => {
       const price = MEDICINES[item.medicine];
-      bill += `${item.medicine.padEnd(14)}|${String(item.quantity).padStart(10)}| Rs. ${price}\n`;
+      bill += `${item.medicine.padEnd(14)}\n ${item.expiry}\n${item.batchNumber.padEnd(13)}|${String(item.quantity).padStart(9)}| Rs. ${price}\n`;
     });
     bill += `\n`;
     bill += `**Total Amount:** Rs. ${calculateTotal()}\n`;
@@ -100,7 +107,7 @@ function Bill() {
 
   return (
     <div>
-      <h1>Pharmacy Billing System</h1>
+      <h1>Sheikh Billing System</h1>
       <label>
         Patient Name:
         <input
@@ -148,6 +155,24 @@ function Bill() {
           <option key={med} value={med}>{med} (Price: Rs. {MEDICINES[med]})</option>
         ))}
       </select>
+      <label>
+        Expiry Date:
+        <input
+          type="text"
+          value={selectedExpiry}
+          onChange={e => setSelectedExpiry(e.target.value)}
+        />
+      </label>
+      <br />
+      <label>
+        Batch Number:
+        <input
+          type="text"
+          value={batchNumber}
+          onChange={e => setBatchNumber(e.target.value)}
+        />
+      </label>
+      <br />
       <button onClick={handleAddToCart}>+</button>
       <br />
       <h2>Cart</h2>
