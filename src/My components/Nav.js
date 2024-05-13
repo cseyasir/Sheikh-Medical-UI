@@ -45,11 +45,11 @@ function Nav() {
                     <li class="active icon-home text-light"><Link to="/"><span className='text-light'>Home</span></Link></li>
                     <li className='nav_but text-light'><Link to="About"><span className='text-light'>About</span></Link></li>
                     <li className='nav_but text-light'><Link to="Bill"><span className='text-light'>Bill</span></Link></li>
+                    <li className='nav_but text-light'><Link to="Dataview"><span className='text-light'>View Bills</span></Link></li>
                     <li className='nav_but text-light'><Link to="Search"><span className='text-light'>search</span></Link></li>
                     <li className='nav_but text-light'><Link to="Addingitem"><span className='text-light'>Add new Item</span></Link></li>
                     <li className='nav_but text-light ' onClick={Logout}>LOGOUT</li>
                     <span className='icon-user h4 text-primary'>Admin</span>
-                    
                   </ul>
                 </nav>
               </div>
@@ -61,6 +61,7 @@ function Nav() {
                     <li className=" icon-home text-light"><Link to="/" className='text-light'>Home</Link></li>
                     <li className='nav_but text-light'><Link to ="About" className='text-light'>About</Link></li>
                     <li className='nav_but text-light'><Link to="Bill"><span className='text-light'>Bill</span></Link></li>
+                    <li className='nav_but text-light'><Link to="Dataview"><span className='text-light'>View Bills</span></Link></li>
                     <li className='nav_but text-light'><Link to="Search"><span className='text-light'>Search</span></Link></li>
                     <li className='nav_but text-light'><Link to="Addingitem"><span className='text-light'>Add new Item</span></Link></li>
                     <li className='nav_but text-light'onClick={Logout}>LogOut</li>

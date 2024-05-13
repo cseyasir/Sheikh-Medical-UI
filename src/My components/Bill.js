@@ -40,7 +40,7 @@ function Bill() {
   const [cart, setCart] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState('Cash');
   const [cashGiven, setCashGiven] = useState(0);
-
+  const [isPrinted, setIsPrinted] = useState(false);
   const handleAddToCart = () => {
     if (!medicineDetails.name.trim() || !medicineDetails.expiryDate.trim() || !medicineDetails.batchNumber.trim() || !medicineDetails.price) {
       alert('Please enter all medicine details.');
@@ -89,6 +89,24 @@ function Bill() {
   };
 
   const handlePrint = () => {
+    setIsPrinted(true);
+    // Retrieve existing data from local storage
+  const storedData = JSON.parse(localStorage.getItem('bills')) || [];
+
+  // Create a new bill object
+  const newBill = {
+    patientDetails,
+    cart,
+    paymentMethod,
+    cashGiven
+  };
+
+  // Append the new bill to the existing data
+  const updatedData = [...storedData, newBill];
+
+  // Store the updated data back in local storage
+  localStorage.setItem('bills', JSON.stringify(updatedData));
+
     const bill = generateBill();
     // Print the bill
     const printWindow = window.open('', '_blank');
@@ -105,7 +123,7 @@ function Bill() {
   };
 
   const generateBill = () => {
-    let bill = `*Sheikh Medical Store*\n   Jangla Mandi\n   Anantnag\n   9541802864\n\n`;
+    let bill = `*Sheikh Medical Store*\n   Janglat Mandi\n   Anantnag\n   9541802864\n\n`;
     bill += `*Patient Details*\n`;
     bill += `Name: ${patientDetails.name}\n`;
     bill += `Age: ${patientDetails.age}\n`;
