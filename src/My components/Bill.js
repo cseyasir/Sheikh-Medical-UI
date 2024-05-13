@@ -90,6 +90,9 @@ function Bill() {
 
   const handlePrint = () => {
     setIsPrinted(true);
+    const currentDate = new Date().toLocaleDateString();
+    const currentTime = new Date().toLocaleTimeString();
+    const billDateTime = `Date: ${currentDate}, Time: ${currentTime}`;
     // Retrieve existing data from local storage
   const storedData = JSON.parse(localStorage.getItem('bills')) || [];
 
@@ -98,7 +101,8 @@ function Bill() {
     patientDetails,
     cart,
     paymentMethod,
-    cashGiven
+    cashGiven,
+    dateTime:billDateTime
   };
 
   // Append the new bill to the existing data
@@ -123,7 +127,10 @@ function Bill() {
   };
 
   const generateBill = () => {
+    const currentDate = new Date().toLocaleDateString();
+    const currentTime = new Date().toLocaleTimeString();
     let bill = `*Sheikh Medical Store*\n   Janglat Mandi\n   Anantnag\n   9541802864\n\n`;
+    bill+=`Date:${currentDate}, Time:${currentTime}\n\n`;
     bill += `*Patient Details*\n`;
     bill += `Name: ${patientDetails.name}\n`;
     bill += `Age: ${patientDetails.age}\n`;

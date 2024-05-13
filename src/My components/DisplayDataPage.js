@@ -37,6 +37,7 @@ const DisplayDataPage = () => {
             <th>Address</th>
             <th>Medicine Details</th>
             <th>Payment</th>
+            <th>Date and Time</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -57,6 +58,7 @@ const DisplayDataPage = () => {
                 </ul>
               </td>
               <td>{bill.paymentMethod}</td>
+              <td>{bill.dateTime}</td> {/* Display date and time here */}
               <td>
                 <button onClick={() => handleDelete(index)}>Delete</button>
               </td>
