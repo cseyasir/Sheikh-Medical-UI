@@ -2,33 +2,33 @@ import React, { useState } from 'react';
 
 const Addnewitem = () => {
   const [newMedicine, setNewMedicine] = useState({
-    name: '',
+    medicine_name: '',
     price: '',
     location: '',
   });
 
   const [validationErrors, setValidationErrors] = useState({
-    name: '',
+    medicine_name: '',
     price: '',
     location: '',
   });
 
   const handleAdd = () => {
     setValidationErrors({
-      name: newMedicine.name.trim() === '' ? 'Name is required' : '',
+      medicine_name: newMedicine.medicine_name.trim() === '' ? 'Name is required' : '',
       price: newMedicine.price.trim() === '' ? 'Price is required' : '',
       location: newMedicine.location.trim() === '' ? 'Location is required' : '',
     });
 
     if (
-      newMedicine.name.trim() !== '' &&
+      newMedicine.medicine_name.trim() !== '' &&
       newMedicine.price.trim() !== '' &&
       newMedicine.location.trim() !== ''
     ) {
       // All fields are filled, so you can proceed with the submission
       // Send a POST request to add the new item
 
-      fetch('https://sheikh-medical-store.onrender.com/medicines', {
+      fetch('https://backendapi-uegd.onrender.com/medicines', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const Addnewitem = () => {
           if (response.status === 201) {
             // Item was successfully added, you can update the UI if needed
             setNewMedicine({
-              name: '',
+              medicine_name: '',
               price: '',
               location: '',
             });
@@ -63,10 +63,10 @@ const Addnewitem = () => {
       <input
         type="text"
         placeholder="Name of medicine"
-        value={newMedicine.name}
-        onChange={(e) => setNewMedicine({ ...newMedicine, name: e.target.value })}
+        value={newMedicine.medicine_name}
+        onChange={(e) => setNewMedicine({ ...newMedicine, medicine_name: e.target.value })}
       />
-      <p className="validation-error text-danger">{validationErrors.name}</p>
+      <p className="validation-error text-danger">{validationErrors.medicine_name}</p>
 
       <input
         type="number"

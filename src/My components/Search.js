@@ -4,7 +4,7 @@ const ShopSearch = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [newMedicine, setNewMedicine] = useState({
-  name: '',
+  medicine_name: '',
   price: 0,
   location: '',
 });
@@ -27,12 +27,12 @@ const handleUpdateSubmit = () => {
   if(item){
   
   // Send a PUT request to update the item with the new price and location
-  fetch(`https://sheikh-medical-store.onrender.com/medicines/${encodeURIComponent(item.name)}`, {
+  fetch(`https://backendapi-uegd.onrender.com/medicines/${encodeURIComponent(item.medicine_name)}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ name: item.name,
+    body: JSON.stringify({ medicine_name: item.medicine_name,
       price: updatedPrice,
       location: updatedLocation,
       
@@ -113,7 +113,7 @@ const handleUpdateSubmit = () => {
     return;
     }
     // Make a GET request to search for medicines by name
-    fetch(`https://sheikh-medical-store.onrender.com/medicines/search?name=${encodeURIComponent(searchTerm)}`)
+    fetch(`https://backendapi-uegd.onrender.com/medicines/search?medicinename=${encodeURIComponent(searchTerm)}`)
       .then((response) => {
         if (!response.ok) {
           if (response.status === 404) {
@@ -133,16 +133,23 @@ const handleUpdateSubmit = () => {
         // Handle the error, e.g., display an error message to the user.
       });
   };
-  const handleDelete = (medicineName) => {
+  const handleDelete = (medicine_name) => {
   // Send a DELETE request to delete the item with the specified name
-  fetch(`https://sheikh-medical-store.onrender.com/medicines/${encodeURIComponent(medicineName)}`, {
+  fetch(`https://backendapi-uegd.onrender.com/medicines/${encodeURIComponent(medicine_name)}`, {
     method: 'DELETE',
   })
     .then((response) => {
-      if (response.status === 204) {
+      if(response.status===200){
+       
+        alert('Item was successfully deleted');
+
+      }
+      else if (response.status === 204) {
         // Item was successfully deleted, you can update the UI if needed
         // For example, you can fetch the updated list of items after the delete.
+        
         handleSearch();
+        alert('Item was successfully deleted');
       } else {
         // Handle errors, e.g., item not found or server error
         console.error('Error deleting item:', response.statusText);
@@ -150,6 +157,7 @@ const handleUpdateSubmit = () => {
     })
     .catch((error) => {
       console.error('Error deleting item:', error);
+      alert('Item was not deleted');
     });
 };
 
@@ -200,11 +208,11 @@ const handleUpdateSubmit = () => {
   <tbody>
     {searchResults.map((result, index) => (
       <tr key={index}>
-        <td className='fix pl-5 h4'>{result.name}</td>
+        <td className='fix pl-5 h4'>{result.medicine_name}</td>
         {/* <td className='pl-5 h4'>${result.price}</td> */}
         <td className='pl-5 h4'>{result.location}</td>
         <td className='pl-5'>
-          <span className='icon-trash-o delete-icon pl-2 ' onClick={() => handleDelete(result.name)} ></span>
+          <span className='icon-trash-o delete-icon pl-2 ' onClick={() => handleDelete(result.medicine_name)} ></span>
           <span className='icon-edit edit-icon ' onClick={() => handleUpdate(result)}></span>
         </td>
       </tr>
