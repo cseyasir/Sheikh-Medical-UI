@@ -12,6 +12,7 @@ import About from './My components/About'
 import Add from './My components/addnewitem'
 import Bill from './My components/Bill';
 import Dataview from './My components/DisplayDataPage'
+import Nxr from"./My components/Nxr"
 
 import { BrowserRouter , Routes, Route, Link } from "react-router-dom";
 
@@ -34,6 +35,7 @@ function App() {
         <Route exact path="Bill" element={<Bill/>} />
         <Route exact path="Addingitem" element={<Add/>} />
         <Route exact path="Dataview" element={<Dataview/>} />
+        <Route exact path="NxrDrugs" element={<Nxr/>} />
       
     </Routes>   
     <Footer></Footer>

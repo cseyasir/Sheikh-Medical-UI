@@ -47,6 +47,7 @@ function Nav() {
                       <li className='nav_but text-light'><Link to="Dataview"><span className='text-light'>View Bills</span></Link></li>
                       <li className='nav_but text-light'><Link to="Search"><span className='text-light'>search</span></Link></li>
                       <li className='nav_but text-light'><Link to="Addingitem"><span className='text-light'>Add new Item</span></Link></li>
+                      <li className='nav_but text-light'><Link to="Nxrdrugs"><span className='text-light'>Nxr Drugs Store</span></Link></li>
                       <li className='nav_but text-light ' onClick={Logout}>LOGOUT</li>
                       <span className='icon-user h4 text-primary'>Admin</span>
                     </ul>
@@ -63,6 +64,7 @@ function Nav() {
                       <li className='nav_but text-light'><Link to="Dataview"><span className='text-light'>View Bills</span></Link></li>
                       <li className='nav_but text-light'><Link to="Search"><span className='text-light'>Search</span></Link></li>
                       <li className='nav_but text-light'><Link to="Addingitem"><span className='text-light'>Add new Item</span></Link></li>
+                      <li className='nav_but text-light'><Link to="Nxrdrugs"><span className='text-light'>Nxr Drugs Store</span></Link></li>
                       <li className='nav_but text-light' onClick={Logout}>LogOut</li>
                       <span className='icon-user h4'>Admin</span>
                     </div>
